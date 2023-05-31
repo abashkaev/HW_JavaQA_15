@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Game {
@@ -11,13 +10,13 @@ public class Game {
 
     public int round(String playerName1, String playerName2) {
 
-        if (isPlayerRegister(playerName1) == false) {
+        if (!isPlayerRegister(playerName1)) {
             NotRegisteredException e = new NotRegisteredException(
                     "Игрок " + playerName1 + " не зарегистрирован!"
             );
             throw e;
         }
-        if (isPlayerRegister(playerName2) == false) {
+        if (!isPlayerRegister(playerName2)) {
             NotRegisteredException e = new NotRegisteredException(
                     "Игрок " + playerName2 + " не зарегистрирован!"
             );
@@ -46,7 +45,7 @@ public class Game {
     public int showStrangeByName(String name) {
         int strength = -1;
         for (Player player : playersIsRegister) {
-            if (player.getName() == name) {
+            if (player.getName().equals(name)) {
                 strength = player.getStrength();
             }
         }
