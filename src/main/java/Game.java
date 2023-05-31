@@ -10,6 +10,7 @@ public class Game {
     }
 
     public int round(String playerName1, String playerName2) {
+
         if (isPlayerRegister(playerName1) == false) {
             NotRegisteredException e = new NotRegisteredException(
                     "Игрок " + playerName1 + " не зарегистрирован!"
@@ -22,9 +23,11 @@ public class Game {
             );
             throw e;
         }
-        if (showStrangeByName(playerName1) > showStrangeByName(playerName2)) {
+        int strangePlayer1 = showStrangeByName(playerName1);
+        int strangePlayer2 = showStrangeByName(playerName2);
+        if (strangePlayer1 > strangePlayer2) {
             return 1;
-        } else if (showStrangeByName(playerName1) < showStrangeByName(playerName2)) {
+        } else if (strangePlayer1 < strangePlayer2) {
             return 2;
         } else {
             return 0;
@@ -33,7 +36,7 @@ public class Game {
 
     public boolean isPlayerRegister(String name) {
         for (Player player : playersIsRegister) {
-            if (player.getName() == name) {
+            if (player.getName().equals(name)) {
                 return true;
             }
         }
